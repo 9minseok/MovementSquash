@@ -4,7 +4,7 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-color: #000000;
   
   .MainPage_Top_Content {
     height: 70%;
@@ -14,7 +14,7 @@
 
     .MainPage_Logo {
       color: #ffffff;
-      font-size: 8em;
+      font-size: 10rem;
       font-family: 'YdestreetB';
     }
   }
@@ -24,9 +24,23 @@
 
     .MainPage_Start_btn {
       color: #ffffff;
-      font-size: 5em;
-      font-family: 'YdestreetB';
     }
   }
 
+  .MainPage_Countdown {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    z-index: 9999;
+  }
+  
 }

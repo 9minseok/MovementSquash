@@ -1,0 +1,33 @@
+.MeasurePage_Container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+
+  .MeasurePage_Content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 3개의 열 */
+    grid-template-rows: repeat(3, 1fr);     /* 2개의 행 */
+    gap: 5px;
+    width: 50vw;
+    height: 100vh;
+    background-color: #ffffff;
+    
+    .MeasurePage_Section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 128, 255, 0.3);
+      padding: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+
+      .section-label {
+        color: #ffffff;
+        font-size: 2rem;
+        font-family: 'YdestreetL';
+      }
+    }
+  }
+}
