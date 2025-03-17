@@ -1,0 +1,13 @@
+.btn {
+  padding: 10px 20px;
+  font-size: 3em;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'YdestreetB';
+
+  &:hover {
+    background-color: lightgray;
+  }
+}

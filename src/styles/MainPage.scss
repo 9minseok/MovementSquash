@@ -1,0 +1,32 @@
+.MainPage_Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  
+  .MainPage_Top_Content {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .MainPage_Logo {
+      color: #ffffff;
+      font-size: 8em;
+      font-family: 'YdestreetB';
+    }
+  }
+
+  .MainPage_Btm_content {
+    height: 30%;
+
+    .MainPage_Start_btn {
+      color: #ffffff;
+      font-size: 5em;
+      font-family: 'YdestreetB';
+    }
+  }
+
+}
