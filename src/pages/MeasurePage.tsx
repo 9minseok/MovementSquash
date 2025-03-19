@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Button from "../components/Button";
 import { motion } from "framer-motion";
 
 const MeasurePage = () => {
@@ -13,40 +14,35 @@ const MeasurePage = () => {
     visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
   };
 
-  const defaultColors = Array(6).fill("lightgray");
-  const [colors, setColors] = useState(defaultColors);
+  const [round, setRound] = useState(1) // 라운드 상태
+  const [visibleNumber, setVisibleNumber] = useState<number | null>(null);
+  const [isRunning, setIsRunning] = useState(true);
 
   useEffect(() => {
+    if (!isRunning || round > 10) return; // 10 라운드 이후엔 종료
+
     const intervalId = setInterval(() => {
-      // 랜덤 인덱스를 생성하여 해당 색상만 빨간색으로 바꿔주기
-      setColors((prevColors) => {
-        const newColors = [...prevColors];
-        
-        // 현재 빨간색인 섹션을 다시 gray로 되돌리기
-        const redIndex = newColors.findIndex(color => color === "gray");
-        if (redIndex !== -1) {
-          newColors[redIndex] = "lightgray";
-        }
-
-        // 새로 빨간색으로 변경할 랜덤 인덱스를 선택
-        const randomIndex = Math.floor(Math.random() * 6); 
-        newColors[randomIndex] = "gray"; // 랜덤 색상은 회색으로
-
-        return newColors;
-      });
-    }, 1000); // 1초마다 색상 변경
+      setVisibleNumber(Math.floor(Math.random() * 6) + 1); // 1~6 중 랜덤 숫자
+    }, 1000); // 1초마다 변경
 
     // 10초 후에 interval을 멈추기
     const timer = setTimeout(() => {
       clearInterval(intervalId);
-    }, 10000); // 10초 후에 interval 멈추기
+      setVisibleNumber(null); // 모든 숫자 숨기기
+      setRound((prevRound) => prevRound + 1); // 다음 라운드로 이동
+    }, 10000); // 10초 후 정지
 
-    // cleanup 함수: 컴포넌트가 언마운트되거나 타이머 종료 시 정리
+    // cleanup 함수: 컴포넌트 언마운트 시 정리
     return () => {
       clearInterval(intervalId);
       clearTimeout(timer);
     };
-  }, []);
+  }, [round, isRunning]);
+
+  const handleStop = () => {
+    setIsRunning(false);
+    setVisibleNumber(null);
+  };
 
   return (
     <motion.div
@@ -57,6 +53,9 @@ const MeasurePage = () => {
       variants={pageVariants}
     >
       <div className="MeasurePage_Container">
+        <div>
+          <h1 className="round-title">Round {round}/10</h1>
+        </div>
         <div className="MeasurePage_Content">
           {Array.from({ length: 6 }).map((_, index) => (
             <motion.div
@@ -64,12 +63,15 @@ const MeasurePage = () => {
               className={`MeasurePage_Section section-${index + 1}`}
               variants={sectionVariants}
               initial="hidden"
-              animate="visible"
-              style={{ backgroundColor: colors[index] }}
+              animate={visibleNumber === index + 1 ? "visible" : "hidden"} // 랜덤 숫자일 때만 보이게
             >
-              <span className="section-label">{`Section ${index + 1}`}</span>
+              <div className="section-label"></div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="MeasurePage_Btn">
+          <Button onClick={handleStop}>STOP</Button>
         </div>
       </div>
     </motion.div>

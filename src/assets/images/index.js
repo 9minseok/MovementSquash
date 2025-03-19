@@ -1,0 +1,1 @@
+export { default as SquashMap } from './squash_map.png';

@@ -1,9 +1,17 @@
 .MeasurePage_Container {
+  position: relative;
   display: flex;
   justify-content: center;
   width: 100vw;
   height: 100vh;
   background-color: #000000;
+
+  .round-title {
+    position: fixed;
+    top: 1vh;
+    left: 1vw;
+    color: #ffffff;
+  }
 
   .MeasurePage_Content {
     display: grid;
@@ -12,22 +20,43 @@
     gap: 5px;
     width: 50vw;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #000000;
+    background-image: url('../assets/images/squash_map.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     
     .MeasurePage_Section {
       display: flex;
-      justify-content: center;
       align-items: center;
-      background-color: rgba(0, 128, 255, 0.3);
-      padding: 20px;
+      padding: 2px;
       font-size: 1.5rem;
       font-weight: bold;
 
+      &:nth-child(odd) { 
+        justify-content: baseline;
+        margin-left: 2vw;
+      }
+
+      &:nth-child(even) { 
+        justify-content: end;
+        margin-right: 2vw;
+      }
+
       .section-label {
-        color: #ffffff;
-        font-size: 2rem;
-        font-family: 'YdestreetL';
+        width: 7vw;
+        height: 7vh;
+        background-image: url('../assets/images/squash_ball.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
       }
     }
+  }
+  
+  .MeasurePage_Btn {
+    position: fixed;
+    top: 1vh;
+    right: 1vw;
   }
 }
